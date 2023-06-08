@@ -1,1 +1,1 @@
-# Characters-Rick-Morty
+# React-GQL with Characters-Rick-Morty
