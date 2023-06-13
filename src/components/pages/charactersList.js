@@ -1,43 +1,34 @@
 
-import { useQuery, gql } from '@apollo/client';
+
+import useCharacters from '../../hooks/useCharacters';
 import Spinner from '../spinner';
 import './characterList.css'
 
-const GET_CHARACTERS = gql`
-    query {
-        characters {
-            results {
-                id 
-                name
-                image    
 
-            }
-        }
-    }
-`
 
 const  CharactersList = () =>  {
 
-    const {error, loading, data} = useQuery(GET_CHARACTERS);
+     const {error, loading, data} = useCharacters();
+   
 
-    if(loading) return <div> <Spinner /> </div>
+        if(loading) return <div> <Spinner /> </div>;
 
-   if (error) return <div>oops!.... something went wrong</div>;
+        if (error) return <div>oops!.... something went wrong</div>;
 
    
-    return (
-        <div className='CharacterList'>
-            {data.characters.results.map((character) => {
-                return(
-                    <div>
-                    <img src={character.image} />
-                    <h2>{character.name}</h2>
-                    </div>
-                )
-            })}
+        return (
+            <div className='CharacterList'>
+                {data.characters.results.map((character) => {
+                    return(
+                        <div>
+                        <img src={character.image} />
+                        <h2>{character.name}</h2>
+                        </div>
+                    );
+                })}
 
-        </div>
-    );
+            </div>
+        );
 }
 
 
