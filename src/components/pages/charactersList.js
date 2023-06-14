@@ -1,5 +1,6 @@
 
 
+import { Link } from 'react-router-dom';
 import useCharacters from '../../hooks/useCharacters';
 import Spinner from '../spinner';
 import './characterList.css'
@@ -17,16 +18,22 @@ const  CharactersList = () =>  {
 
    
         return (
-            <div className='CharacterList'>
-                {data.characters.results.map((character) => {
-                    return(
-                        <div>
-                        <img src={character.image} />
-                        <h2>{character.name}</h2>
-                        </div>
-                    );
-                })}
+            <div>
+                <h1 className='title'>Characters From Ricky & Morty</h1>
+                <div className='CharacterList'>
+                    
+                    {data.characters.results.map((character) => {
+                        return(
+                            <div key={character.name}>
+                                <Link to={`${character.id}`}>
+                                    <img  alt='character' src={character.image} />
+                                    <h2>{character.name}</h2>
+                                </Link>
+                            </div>
+                        ); 
+                    })}
 
+                </div>
             </div>
         );
 }
